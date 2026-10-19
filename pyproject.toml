@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentmem"
+version = "0.1.0"
+description = "Base and fact memory service with traceable evidence retrieval"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["fastapi>=0.115,<1", "pydantic>=2,<3", "uvicorn>=0.30,<1", "numpy>=1.26,<3", "faiss-cpu==1.15.0", "openai>=1.90,<3", "httpx>=0.27,<1"]
+
+[project.optional-dependencies]
+nlp = ["spacy>=3.7,<4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+agentmem = ["schema.sql"]
+
+[project.scripts]
+agentmem = "agentmem.__main__:main"

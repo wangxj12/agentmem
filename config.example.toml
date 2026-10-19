@@ -1,0 +1,56 @@
+# Set the model endpoints and names before starting the service.
+[api]
+require_token = true
+# Set AGENTMEM_API_KEY to the Memory System Key submitted to AML.
+# Optional api_key here takes precedence over the environment variable.
+# api_key = "your-memory-system-key"
+
+[database]
+path = "data/agentmem-v6.db"
+
+[channels]
+chunk = true
+fact = true
+
+[llm]
+base_url = "http://YOUR-LLM-SERVER/v1"
+model = "YOUR-LLM-MODEL"
+# Prefer AGENTMEM_LLM_API_KEY; set api_key here only if needed.
+
+[embedding]
+# Timeout applied to each embedding HTTP operation (150 seconds by default).
+request_timeout_seconds = 150
+max_retries = 0
+base_url = "http://YOUR-EMBEDDING-SERVER/v1"
+model = "YOUR-EMBEDDING-MODEL"
+identity = "YOUR-DEPLOYMENT-REVISION"
+# Prefer AGENTMEM_EMBEDDING_API_KEY.
+# The effective identity also includes the model and per-channel input transform.
+
+[repairs]
+message_context = true
+grounded_extraction = true
+
+# Optional diagnostic logs. Source text is excluded unless explicitly enabled.
+[diagnostics]
+enabled = false
+path = "diagnostics/events.jsonl"
+include_content = false
+
+[retrieval]
+mode = "evidence"
+fact_assist = true
+chunk_weight = 1.0
+fact_weight = 1.0
+
+# One citation-only correction pass per fact extraction batch.
+[fact_extraction]
+source_repair = true
+response_format = "json_object" # Use "json_schema" only with a compatible model service.
+max_tokens = 2000
+
+# Whole Fact channel retries; unchanged extraction/persistence code is called again.
+# 2 retries = at most 3 attempts per /add. Independent of embedding SDK retries.
+[fact_retry]
+max_retries = 2
+backoff_seconds = 2.0

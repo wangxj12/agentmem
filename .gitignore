@@ -1,0 +1,52 @@
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.nox/
+.coverage*
+htmlcov/
+
+# Build outputs
+build/
+dist/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+config.toml
+config.*.toml
+!config.example.toml
+
+# Runtime data and generated outputs
+data/
+artifacts/
+runs/
+diagnostics/
+eval-output/
+smoke-output/
+.wheel-check/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-wal
+*.sqlite3-shm
+*.log
+
+# Editor and operating system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+~$*
